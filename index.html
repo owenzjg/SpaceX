@@ -1,1 +1,54 @@
-SpaceX launches are coming soon.
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SpaceX Launches</title>
+</head>
+<body>
+  <header>
+    <h1 id="title">SpaceX 发射记录</h1>
+    <button id="language" type="button">English</button>
+    <p id="source"></p>
+  </header>
+  <main>
+    <p id="status">正在读取官网同步数据…</p>
+    <label for="vehicle" id="vehicle-label">飞行器</label>
+    <select id="vehicle">
+      <option value="all">全部</option>
+      <option value="Falcon 9">Falcon 9</option>
+      <option value="Falcon Heavy">Falcon Heavy</option>
+      <option value="Starship">Starship</option>
+    </select>
+    <h2 id="upcoming-heading">未来发射</h2><div id="upcoming"></div>
+    <h2 id="completed-heading">历史发射</h2><div id="completed"></div>
+  </main>
+  <script>
+    const copy = {
+      zh: { title: 'SpaceX 发射记录', source: '数据来源：SpaceX 官网发射页面', loading: '正在读取官网同步数据…', updated: '官网同步时间：', vehicle: '飞行器', all: '全部', upcoming: '未来发射', completed: '历史发射', empty: '暂无符合条件的发射记录', mission: '任务', rocket: '飞行器', site: '发射场', landing: '回收地点', date: '发射时间', english: 'English' },
+      en: { title: 'SpaceX Launches', source: 'Source: SpaceX official launches page', loading: 'Loading the latest official sync…', updated: 'Official sync: ', vehicle: 'Vehicle', all: 'All', upcoming: 'Upcoming launches', completed: 'Completed launches', empty: 'No launches match this filter.', mission: 'Mission', rocket: 'Vehicle', site: 'Launch site', landing: 'Landing site', date: 'Launch time', english: '中文' }
+    };
+    let language = localStorage.getItem('spacex-language') || 'zh';
+    let launches = { updatedAt: null, upcoming: [], completed: [] };
+    const $ = (id) => document.getElementById(id);
+    const t = (key) => copy[language][key];
+    function setText() {
+      document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en'; document.title = t('title');
+      $('title').textContent = t('title'); $('language').textContent = t('english'); $('source').textContent = t('source');
+      $('vehicle-label').textContent = t('vehicle'); $('vehicle').options[0].textContent = t('all');
+      $('upcoming-heading').textContent = t('upcoming'); $('completed-heading').textContent = t('completed');
+    }
+    function filtered(rows) { const vehicle = $('vehicle').value; return vehicle === 'all' ? rows : rows.filter(row => row.vehicle === vehicle); }
+    function renderRows(target, rows) {
+      const list = filtered(rows); if (!list.length) { target.textContent = t('empty'); return; }
+      const table = document.createElement('table'), head = document.createElement('tr');
+      [t('mission'), t('rocket'), t('site'), t('landing'), t('date')].forEach(label => { const cell = document.createElement('th'); cell.textContent = label; head.append(cell); }); table.append(head);
+      list.forEach(row => { const tr = document.createElement('tr'); [row.mission, row.vehicle, row.launchSite, row.landingSite, row.launchDate || '—'].forEach(value => { const cell = document.createElement('td'); cell.textContent = value || '—'; tr.append(cell); }); table.append(tr); }); target.replaceChildren(table);
+    }
+    function render() { setText(); $('status').textContent = launches.updatedAt ? `${t('updated')}${new Date(launches.updatedAt).toLocaleString(language === 'zh' ? 'zh-CN' : 'en-US')}` : t('loading'); renderRows($('upcoming'), launches.upcoming); renderRows($('completed'), launches.completed); }
+    $('language').addEventListener('click', () => { language = language === 'zh' ? 'en' : 'zh'; localStorage.setItem('spacex-language', language); render(); });
+    $('vehicle').addEventListener('change', render);
+    fetch('./data/launches.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw new Error(response.status); return response.json(); }).then(data => { launches = data; render(); }).catch(() => { $('status').textContent = language === 'zh' ? '暂时无法读取同步数据。请稍后再试。' : 'The synced data is temporarily unavailable. Please try again later.'; }); render();
+  </script>
+</body>
+</html>
