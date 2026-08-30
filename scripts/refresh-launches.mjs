@@ -17,7 +17,11 @@ function rows(lines) {
   const data = [];
   for (let i = header + 5; i + 3 < lines.length; i += 5) {
     const [mission, vehicle, launchSite, landingSite, launchDate] = lines.slice(i, i + 5);
-    if (['Falcon 9', 'Falcon Heavy', 'Starship'].includes(vehicle)) data.push({ mission, vehicle, launchSite, landingSite, launchDate: launchDate || null });
+    if (['Falcon 9', 'Falcon Heavy', 'Starship'].includes(vehicle)) {
+      const hasClockTime = /\b\d{1,2}:\d{2}(?::\d{2})?\b/.test(launchDate || '');
+      const parsed = hasClockTime ? Date.parse(launchDate) : Number.NaN;
+      data.push({ mission, vehicle, launchSite, landingSite, launchDate: launchDate || null, launchTime: Number.isNaN(parsed) ? null : new Date(parsed).toISOString() });
+    }
   }
   return data;
 }
