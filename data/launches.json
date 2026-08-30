@@ -1,1 +1,120 @@
-{"updatedAt":null,"source":"https://new.spacex.com/launches","upcoming":[],"completed":[]}
+{
+  "updatedAt": "2026-08-30T10:42:36.662Z",
+  "source": "https://new.spacex.com/launches",
+  "upcoming": [
+    {
+      "mission": "USSF-366 Mission",
+      "vehicle": "Falcon 9",
+      "launchSite": "SLC-4E, California",
+      "landingSite": "Droneship",
+      "launchDate": "August 15, 2026"
+    },
+    {
+      "mission": "Starlink Mission",
+      "vehicle": "Falcon 9",
+      "launchSite": "SLC-4E, California",
+      "landingSite": "Droneship",
+      "launchDate": null
+    },
+    {
+      "mission": "Starlink Mission",
+      "vehicle": "Falcon 9",
+      "launchSite": "SLC-40, Florida",
+      "landingSite": "Droneship",
+      "launchDate": null
+    },
+    {
+      "mission": "Starlink Mission",
+      "vehicle": "Falcon 9",
+      "launchSite": "SLC-40, Florida",
+      "landingSite": "Droneship",
+      "launchDate": null
+    },
+    {
+      "mission": "USSF-366 Mission",
+      "vehicle": "Falcon 9",
+      "launchSite": "LC-39A, Florida",
+      "landingSite": "Landing Zone",
+      "launchDate": null
+    },
+    {
+      "mission": "Globalstar 2-R Launch 1 Mission",
+      "vehicle": "Falcon 9",
+      "launchSite": "SLC-40, Florida",
+      "landingSite": "Landing Zone",
+      "launchDate": null
+    }
+  ],
+  "completed": [
+    {
+      "mission": "Starlink Mission",
+      "vehicle": "Falcon 9",
+      "launchSite": "SLC-4E, California",
+      "landingSite": "Droneship",
+      "launchDate": "August 12, 2026"
+    },
+    {
+      "mission": "Starlink Mission",
+      "vehicle": "Falcon 9",
+      "launchSite": "SLC-40, Florida",
+      "landingSite": "Droneship",
+      "launchDate": "August 11, 2026"
+    },
+    {
+      "mission": "Starlink Mission",
+      "vehicle": "Falcon 9",
+      "launchSite": "SLC-4E, California",
+      "landingSite": "Droneship",
+      "launchDate": "August 8, 2026"
+    },
+    {
+      "mission": "BlueBird 11-13 Mission",
+      "vehicle": "Falcon 9",
+      "launchSite": "SLC-40, Florida",
+      "landingSite": "Droneship",
+      "launchDate": "August 5, 2026"
+    },
+    {
+      "mission": "Starlink Mission",
+      "vehicle": "Falcon 9",
+      "launchSite": "SLC-4E, California",
+      "landingSite": "Droneship",
+      "launchDate": "August 4, 2026"
+    },
+    {
+      "mission": "Starlink Mission",
+      "vehicle": "Falcon 9",
+      "launchSite": "SLC-4E, California",
+      "landingSite": "Droneship",
+      "launchDate": "July 31, 2026"
+    },
+    {
+      "mission": "NROL-95 Mission",
+      "vehicle": "Falcon 9",
+      "launchSite": "SLC-4E, California",
+      "landingSite": "Landing Zone",
+      "launchDate": "July 30, 2026"
+    },
+    {
+      "mission": "Starlink Mission",
+      "vehicle": "Falcon 9",
+      "launchSite": "SLC-4E, California",
+      "landingSite": "Droneship",
+      "launchDate": "July 25, 2026"
+    },
+    {
+      "mission": "Starship's Thirteenth Flight Test",
+      "vehicle": "Starship",
+      "launchSite": "Pad 2, Starbase",
+      "landingSite": "Expended",
+      "launchDate": "July 24, 2026"
+    },
+    {
+      "mission": "Starlink Mission",
+      "vehicle": "Falcon 9",
+      "launchSite": "SLC-4E, California",
+      "landingSite": "Droneship",
+      "launchDate": "July 21, 2026"
+    }
+  ]
+}
